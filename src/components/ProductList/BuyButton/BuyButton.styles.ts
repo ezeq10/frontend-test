@@ -5,9 +5,10 @@ export const StyledBuyButton = styled.button`
   border-radius: 16px;
   border: 2px solid red;
   color: red;
-  width: 70px;
-  height: 30px;
+  width: 80px;
+  height: 40px;
   font-size: 16px;
+  font-weight: bold;
   &:hover {
     background-color: red;
     color: white;

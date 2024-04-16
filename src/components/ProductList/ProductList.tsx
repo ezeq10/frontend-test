@@ -45,18 +45,15 @@ const ProductList: React.FC = () => {
   };
   
   return (
-    <>
-      <h1>Products</h1>
-      <StyledProductList>
-        {data.products.items.map((productItem: ProductItem) => (
-          <ProductGridItem 
-            key={productItem.id}
-            productItem={productItem} 
-            handleBuy={handleBuy} 
-          />
-        ))}
-      </StyledProductList>
-    </>
+    <StyledProductList>
+      {data.products.items.map((productItem: ProductItem) => (
+        <ProductGridItem 
+          key={productItem.id}
+          productItem={productItem} 
+          handleBuy={handleBuy} 
+        />
+      ))}
+    </StyledProductList>
   );
 }
 
