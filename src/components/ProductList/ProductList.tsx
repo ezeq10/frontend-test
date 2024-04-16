@@ -40,19 +40,23 @@ const ProductList: React.FC = () => {
       updateSubtotal(response.data?.addItemToOrder?.subTotal ?? 0);
     }).catch((error) => {
       console.error('Error adding item to order:', error);
+      throw new Error('Error adding item to order');
     });
   };
   
   return (
-    <StyledProductList>
-      {data.products.items.map((productItem: ProductItem) => (
-        <ProductGridItem 
-          key={productItem.id} 
-          productItem={productItem} 
-          handleBuy={handleBuy} 
-        />
-      ))}
-    </StyledProductList>
+    <>
+      <h1>Products</h1>
+      <StyledProductList>
+        {data.products.items.map((productItem: ProductItem) => (
+          <ProductGridItem 
+            key={productItem.id}
+            productItem={productItem} 
+            handleBuy={handleBuy} 
+          />
+        ))}
+      </StyledProductList>
+    </>
   );
 }
 

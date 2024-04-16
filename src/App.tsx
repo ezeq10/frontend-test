@@ -6,9 +6,7 @@ const App: React.FC = () => {
   return (
     <OrderSubtotalProvider>
       <Header></Header>
-      <div>
-        <ProductList></ProductList>
-      </div>
+      <ProductList></ProductList>
     </OrderSubtotalProvider>
   );
 }

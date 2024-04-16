@@ -1,6 +1,5 @@
-import React from 'react';
+import { StyledProductGridItem, StyledProductImage, StyledProductPriceWrapper } from './ProductGridItem.styles';
 import { BuyButton } from '../BuyButton';
-
 interface ProductGridItemProps {
   key: string;
   productItem: ProductItem;
@@ -18,12 +17,18 @@ interface ProductItem {
 
 const ProductGridItem = ({ productItem, handleBuy }: ProductGridItemProps) => {
   return ( 
-    <>
-      <img src={productItem.featuredAsset.preview} alt={productItem.featuredAsset.name} />
+    <StyledProductGridItem>
+      <StyledProductImage src={productItem.featuredAsset.preview} alt={productItem.featuredAsset.name} />
       <p>{productItem.description}</p>
-      <p>${(productItem.variants.length) ? productItem.variants[0].price : 'No price available.'}</p>
-      <BuyButton onClick={() => handleBuy(productItem.id)}>Buy</BuyButton>  
-    </>
+      {(productItem.variants.length) ? (
+        <StyledProductPriceWrapper>
+          <span>${ productItem.variants[0].price}</span>
+          <BuyButton onClick={() => handleBuy(productItem.variants[0].id)}>Buy</BuyButton>  
+        </StyledProductPriceWrapper>
+      ):(
+        <div>No price available.</div>
+      )}
+    </StyledProductGridItem>
   )
 };
 
