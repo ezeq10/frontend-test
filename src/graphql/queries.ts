@@ -8,7 +8,7 @@ export const GET_PRODUCTS = gql`
         name
         description
         variants {
-          productId
+          id
           price
         }
         featuredAsset {
