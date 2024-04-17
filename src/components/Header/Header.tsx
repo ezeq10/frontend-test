@@ -1,15 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { StyledHeader } from './Header.styles';
-import { OrderSubtotalContext } from '../../context/OrderSubtotalContext';
+import { useOrderSubtotalContext } from '../../context/OrderSubtotalContext';
 
 const Header: React.FC = () => {
-  const context = useContext(OrderSubtotalContext);
-  if (!context) {
-    throw new Error('OrderSubtotalContext not found!');
-  }
-
-  const { subtotal } = context;
-
+  const { subtotal } = useOrderSubtotalContext();
+  
   return (
     <StyledHeader>
       <img
