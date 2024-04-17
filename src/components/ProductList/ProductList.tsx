@@ -5,15 +5,7 @@ import { ADD_ITEM_TO_ORDER } from "../../graphql/mutations";
 import { StyledProductList } from "./ProductList.styles";
 import { ProductGridItem } from "./ProductGridItem";
 import { OrderSubtotalContext } from "../../context/OrderSubtotalContext";
-
-interface ProductItem {
-  id: string;
-  name: string;
-  description: string;
-  variants: any[];
-  price: number;
-  featuredAsset: any;
-}
+import { ProductItem } from "../../interfaces";
 
 const ProductList: React.FC = () => {
   const { loading, error, data } = useQuery(GET_PRODUCTS);
@@ -45,7 +37,7 @@ const ProductList: React.FC = () => {
   };
   
   return (
-    <StyledProductList>
+    <StyledProductList data-testid="product-list">
       {data.products.items.map((productItem: ProductItem) => (
         <ProductGridItem 
           key={productItem.id}

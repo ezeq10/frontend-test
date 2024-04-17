@@ -12,8 +12,8 @@ interface OrderSubtotalContextProps {
 
 // Create the context
 const OrderSubtotalContext = createContext<OrderSubtotalContextType>({
-  subtotal: 0, // Provide a default value for subtotal
-  updateSubtotal: () => {}, // Provide a default function for updateSubtotal
+  subtotal: 0, // Default value for subtotal
+  updateSubtotal: () => {}, // Default function for updateSubtotal
 });
 
 // Create the provider

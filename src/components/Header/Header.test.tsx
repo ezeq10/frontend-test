@@ -1,32 +1,29 @@
 import { render } from '@testing-library/react';
 import Header from './Header';
-import { OrderSubtotalContext } from '../../context/OrderSubtotalContext';
 
-// Mock the OrderSubtotalContext
+// Mock OrderSubtotalContext
 const mockContextValue = {
-  subtotal: 10,
-  updateSubtotal: () => {},
+  subtotal: 50
 };
 
-// Wrap the Header component with the OrderSubtotalContext provider
-const renderWithContext = () => {
-  return render(
-    <OrderSubtotalContext.Provider value={mockContextValue}>
-      <Header />
-    </OrderSubtotalContext.Provider>
-  );
-};
+// Mock useContext hook to return mock context value
+jest.mock('../../context/OrderSubtotalContext', () => ({
+  OrderSubtotalContext: {
+    Consumer: ({ children }: { children: any }) => children(mockContextValue)
+  }
+}));
 
-describe('Header component', () => {
-  test('renders logo and subtotal', () => {
-    const { getByAltText, getByText } = renderWithContext();
+describe('Header Component', () => {
+  it('renders with the correct logo and subtotal', () => {
+    const { getByAltText, getByText } = render(<Header />);
     
-    // Check if the logo is rendered
+    // Check logo
     const logoElement = getByAltText('logo');
     expect(logoElement).toBeInTheDocument();
+    expect(logoElement.getAttribute('src')).toEqual('https://santex.wpengine.com/wp-content/uploads/2019/02/logo-santex@3x.png');
 
-    // Check if the subtotal is rendered
-    const subtotalElement = getByText('$ 10');
+    // Check if the subtotal is rendered with the correct value
+    const subtotalElement = getByText('$ 50');
     expect(subtotalElement).toBeInTheDocument();
   });
 });
