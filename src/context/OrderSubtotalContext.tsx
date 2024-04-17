@@ -11,13 +11,13 @@ interface OrderSubtotalContextProps {
 }
 
 // Create the context
-const OrderSubtotalContext = createContext<OrderSubtotalContextType>({
+export const OrderSubtotalContext = createContext<OrderSubtotalContextType>({
   subtotal: 0, // Default value for subtotal
   updateSubtotal: () => {}, // Default function for updateSubtotal
 });
 
 // Create the provider
-const OrderSubtotalProvider = ({children}: OrderSubtotalContextProps) => {
+export const OrderSubtotalProvider = ({children}: OrderSubtotalContextProps) => {
   const [subtotal, setSubtotal] = useStateWithStorage<number>('Subtotal', 0);
 
   const updateSubtotal = (newSubtotal: number) => {
@@ -30,5 +30,3 @@ const OrderSubtotalProvider = ({children}: OrderSubtotalContextProps) => {
     </OrderSubtotalContext.Provider>
   );
 };
-
-export { OrderSubtotalProvider, OrderSubtotalContext };

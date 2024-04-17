@@ -3,7 +3,12 @@ import { StyledHeader } from './Header.styles';
 import { OrderSubtotalContext } from '../../context/OrderSubtotalContext';
 
 const Header: React.FC = () => {
-  const { subtotal } = useContext(OrderSubtotalContext)!;
+  const context = useContext(OrderSubtotalContext);
+  if (!context) {
+    throw new Error('OrderSubtotalContext not found!');
+  }
+
+  const { subtotal } = context;
 
   return (
     <StyledHeader>
